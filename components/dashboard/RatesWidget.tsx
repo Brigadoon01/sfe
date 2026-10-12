@@ -12,9 +12,11 @@ export function RatesWidget({ base }: { base: Currency }) {
   const [rates, setRates] = useState<Rate[]>()
 
   useEffect(() => {
-    Promise.all(QUOTES.map((quote) => getRate(quote, base))).then((results) =>
-      setRates(results.map((res) => res.data))
-    )
+    Promise.all(QUOTES.map((quote) => getRate(quote, base)))
+      .then((results) => setRates(results.map((res) => res.data)))
+      .catch(() => {
+        // Keep the fallback dashes when rates are unavailable.
+      })
   }, [base])
   const updatedAt = rates?.[0]?.updatedAt
 
