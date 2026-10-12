@@ -21,11 +21,19 @@ export default function ConvertPage() {
   const [rate, setRate] = useState<Rate>()
 
   useEffect(() => {
-    getMe().then((res) => setUser(res.data))
+    getMe()
+      .then((res) => setUser(res.data))
+      .catch(() => {
+        // Conversion can still show validation and server errors without a wallet summary.
+      })
   }, [])
 
   useEffect(() => {
-    getRate(from, to).then((res) => setRate(res.data))
+    getRate(from, to)
+      .then((res) => setRate(res.data))
+      .catch(() => {
+        // The rate is unavailable until a later selection or refresh.
+      })
   }, [from, to])
 
   const value = parseMoney(amount, from) ?? 0

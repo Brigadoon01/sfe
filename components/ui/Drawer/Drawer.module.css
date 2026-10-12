@@ -39,6 +39,8 @@
   width: 32px;
   height: 32px;
   border-radius: var(--radius-md);
+  border: 0;
+  background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
 }
@@ -65,5 +67,16 @@
     width: 100%;
     max-height: 90vh;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .panel::before {
+    content: '';
+    flex: none;
+    align-self: center;
+    width: 36px;
+    height: 4px;
+    margin-top: var(--space-2);
+    border-radius: var(--radius-full);
+    background: var(--color-border-strong);
   }
 }

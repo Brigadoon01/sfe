@@ -49,11 +49,35 @@
 }
 
 @media (max-width: 640px) {
-  .links {
-    display: none;
+  .inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0;
+    height: auto;
+    padding-top: var(--space-3);
   }
 
-  .inner {
-    justify-content: space-between;
+  .links {
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    align-items: stretch;
+    gap: var(--space-6);
+    height: 48px;
+  }
+
+  .link {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+  }
+
+  .active {
+    border-bottom-color: var(--color-primary);
+  }
+
+  .inner > :last-child {
+    grid-column: 2;
+    grid-row: 1;
   }
 }
